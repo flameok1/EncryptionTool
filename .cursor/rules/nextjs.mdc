@@ -1,0 +1,55 @@
+---
+alwaysApply: true
+---
+# 🧠 General coding philosophy
+rules:
+  - 使用 TypeScript，所有檔案副檔名應為 `.ts` 或 `.tsx`
+  - 禁止使用 `any`，若無法確定型別，使用 `unknown` 或建立 interface
+  - 優先使用命名導出，而不是預設導出，例如，使用 `export function Button() { /* ... */}` 而不是 `export default function Button() { /* ... */}`。
+  - 函式元件一律使用箭頭函式風格
+  - 不使用 `var`，改用 `const` 與 `let`
+  - 命名需具語意，避免單字母變數名稱（i, j 除外）
+  - Keep most components as React Server Components (RSC)
+  - Only use client components when you need interactivity and wrap in `Suspense` with fallback UI
+  - Create small client component wrappers around interactive elements
+  - Avoid unnecessary `useState` and `useEffect` when possible:
+    - Use server components for data fetching
+    - Use React Server Actions for form handling
+    - Use URL search params for shareable state
+# ⚛️ React / Next.js
+react:
+  - 所有元件皆為 Function Component，命名使用 PascalCase
+  - 自訂 hooks 命名需以 `use` 開頭
+  - 禁止在 `useEffect` 中使用未列入 dependency 的變數
+  - 優先使用 Next.js 內建的 `Image` 與 `Link`
+
+# 🎨 Styling
+styling:
+  - 使用 Tailwind CSS
+  - className 排列順序：布局 > 尺寸 > 顏色 > 其他
+  - 禁止使用 inline style 除非必要
+  - 不使用舊式 CSS module
+
+# 📦 Imports
+imports:
+  - 匯入順序：react, next, 外部套件, utils, hooks, components, types
+  - 禁止循環匯入
+  - 自訂模組路徑請使用 `@/` 起始
+  - 移除未使用的 import
+
+# 🧱 Components
+components:
+  - 元件需盡量保持無狀態 (stateless)
+  - 需在文件開頭加上簡短註解描述用途
+
+# 🧰 Code style
+style:
+  - 使用分號
+  - 單引號 `'` 代替雙引號 `" `
+  - tab 寬度為 2
+  - 禁止使用 console.log，改用 logger 工具或 error/warn
+
+# 🧾 Documentation
+docs:
+  - 所有 function、component 均需 JSDoc 註解
+  - 若為 utils 或 API function，需包含 input/output 型別描述
